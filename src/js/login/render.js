@@ -13,11 +13,12 @@ const template = (opts = {}) => {
 
   const tpl = `
     <div id="login-wrapper">
+      <p id="login-error" class="login-error"></p>
       <form id="login-form" onsubmit="return false">
         ${autocompleteAdapter}
         <label class="login-account-wrapper">
           <span class="account-label">${opts.accountLabel}</span>
-          <input id="login-account" name="account" type="text" placeholder="${opts.accountPlaceholder}" autocomplete="${autocompleteValue}" />
+          <input id="login-account" name="account" type="text" placeholder="${opts.accountPlaceholder}" autocomplete="${autocompleteValue}" valid="present" />
           <span id="clear-account" class="del"></span>
         </label>
         <label class="login-remember-wrapper" style="display: ${showRemember}">
@@ -26,7 +27,7 @@ const template = (opts = {}) => {
         </label>
         <label class="login-account-wrapper">
           <span class="password-label">${opts.passwordLabel}</span>
-          <input id="login-password" name="password" type="text" placeholder="${opts.passwordPlaceholder}" autocomplate="${autocompleteValue}" />
+          <input id="login-password" name="password" type="text" placeholder="${opts.passwordPlaceholder}" autocomplate="${autocompleteValue}" valid="present" />
         </label>
         <input id="login-btn" class="login-btn" type="submit" value="${opts.loginBtnText}">
         <div class="login-extra-wrapper">
