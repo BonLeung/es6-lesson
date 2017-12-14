@@ -21,3 +21,11 @@ FetchMock.mock('/login', (url, opts) => {
     }
   }
 })
+
+FetchMock.mock('/getMobileVerifyToken', (url, opts) => {
+  return {
+    code: 200,
+    message: 'success',
+    mobileVerifyToken: '123456'
+  }
+})

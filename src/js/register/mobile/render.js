@@ -8,7 +8,7 @@ const tpl = (opts = {}) => {
         </label>
         <label>
           <span>验证</span>
-          <div id="register-verify-wrapper"></div>
+          <div id="register-verify-wrapper" class="register-verify-wrapper"></div>
         </label>
       </form>
     </div>

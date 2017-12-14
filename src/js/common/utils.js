@@ -4,4 +4,22 @@ const getId = (id) => {
   return dom
 }
 
-export { getId as $ }
+const hasClass = (dom, cls) => {
+  return dom.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+}
+
+const addClass = (dom, cls) => {
+  dom.className.trim()
+  if (!hasClass(dom, cls)) {
+    dom.className += ' ' + cls 
+  }
+}
+
+const removeClass = (dom, cls) => {
+  if (hasClass(dom, cls)) {
+    const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+    dom.className = dom.className.replace(reg, ' ')
+  }
+}
+
+export { getId as $, addClass, removeClass }
