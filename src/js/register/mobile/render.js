@@ -4,7 +4,7 @@ const tpl = (opts = {}) => {
       <form id="register-mobile-form" onsubmit="return false">
         <label>
           <span>手机号</span>
-          <input type="text" name="mobile" placeholder="${opts.mobilePlaceholder || ''}" valid="present mobile" />
+          <input id="register-mobile-input" type="text" name="mobile" placeholder="${opts.mobilePlaceholder || ''}" valid="present, mobile" />
         </label>
         <label>
           <span>验证</span>
@@ -13,7 +13,7 @@ const tpl = (opts = {}) => {
         <input id="register-verify-btn" class="disabled" disabled type="submit" value="下一步" />
       </form>
 
-      <div id="register-verify-dialog" class="register-verofy-dialog">
+      <div id="register-verify-dialog" class="register-verify-dialog">
         <div class="register-verify-dialog-header">
           <div class="register-verify-dialog-close" id="register-verify-dialog-close"></div>
         </div>
@@ -32,8 +32,8 @@ const tpl = (opts = {}) => {
           </label>
           <label>
             <span>&nbsp;</span>
-            <div class="register-verify-tip">
-              <img src="../images/ok-fill.png" />
+            <div class="register-tip">
+              <img src="../images/ok-fill.png"  />
               校验码已发送至你的手机，请查收
             </div>
           </label>
