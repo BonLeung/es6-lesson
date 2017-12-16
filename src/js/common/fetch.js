@@ -28,4 +28,4 @@ const fetchJson = (url, params) => {
   })
 }
 
-export { fetchPost }
+export { fetchPost, fetchJson }

@@ -2,6 +2,7 @@ import { $ } from './utils'
 import { fetchJson } from './fetch'
 
 const render = Symbol('render')
+const event = Symbol('event')
 
 class Region {
   constructor(opts) {
@@ -12,20 +13,83 @@ class Region {
       throw '请填写name配置'
     }
     this[render](opts)
+    this[event](opts)
   }
 
   async [render](opts) {
-    let regionData = await fetchJson('/region-data', {})
-    regionData = regionData.data
-
     const tpl = `
       <div class="region-select-wrapper">
         <select id="region-province-select"></select>
         <select id="region-city-select"></select>
         <select id="region-area-select"></select>
-        <input type="hidden" name="${opts.name}" valid="${opts.present ? 'present' : ''}" />
+        <input id="region-selected" type="hidden" name="${opts.name}" valid="${opts.present ? 'present' : ''}" />
       </div>
     `
     opts.container.innerHTML = tpl
   }
+
+  async [event]() {
+    let regionData = await fetchJson('/region-data', {})
+    regionData = regionData.data
+
+    const $provinceSelect = $('region-province-select')
+    const $citySelect = $('region-city-select')
+    const $areaSelect = $('region-area-select')
+    const $result = $('region-selected')
+
+    let provinceSelected, citySelected, areaSelected
+
+    let provinceOptions = '<option></option>'
+
+    for(let item of regionData) {
+      provinceOptions += `<option value="${item.id}">${item.name}</option>`
+    }
+
+    $provinceSelect.innerHTML = provinceOptions
+
+    const provinceChange = () => {
+      const i = parseInt($provinceSelect.value)
+      const cities = regionData[i - 1].city
+      let cityOptions = ''
+      provinceSelected = i
+      for (let item of cities) {
+        cityOptions += `<option value="${item.id}">${item.name}</option>`
+      }
+      $citySelect.innerHTML = cityOptions
+    }
+
+    const cityChange = () => {
+      let areas = regionData[provinceSelected - 1].city.filter(item => {
+        return item.id === parseInt($citySelect.value)
+      })[0].district
+      let areaOptions = ''
+      citySelected = $citySelect.value
+      for (let item of areas) {
+        areaOptions += `<option value="${item.id}">${item.name}</option>`
+      }
+      $areaSelect.innerHTML = areaOptions
+    }
+
+    const areaChange = () => {
+      areaSelected = parseInt($areaSelect.value)
+      $result.value = provinceSelected + ',' + citySelected + ',' + areaSelected
+    }
+
+    $provinceSelect.onchange = () => {
+      provinceChange()
+      cityChange()
+      areaChange()
+    }
+
+    $citySelect.onchange = () => {
+      cityChange()
+      areaChange()
+    }
+
+    $areaSelect.onchange = () => {
+      areaChange()
+    }
+  }
 }
+
+export default Region

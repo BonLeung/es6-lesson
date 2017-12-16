@@ -64,3 +64,10 @@ FetchMock.mock('/region-data', (url, opts) => {
     data: regionData
   }
 })
+
+FetchMock.mock('/register/info', (url, opts) => {
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
