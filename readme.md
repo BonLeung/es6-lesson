@@ -3,7 +3,7 @@
 ### 第一步，克隆项目并安装所需要的包
 
 ```sh
-git clone http://github.com/BonLeung/es6-lesson.git
+git clone https://github.com/BonLeung/es6-lesson.git
 cd es6-lesson
 npm install
 ```
