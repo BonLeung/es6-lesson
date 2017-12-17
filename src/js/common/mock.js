@@ -78,3 +78,20 @@ FetchMock.mock('/register/payment', (url, opts) => {
     message: 'success'
   }
 })
+
+FetchMock.mock('/profile', (url, opts) => {
+  return {
+    code: 200,
+    message: 'success',
+    data: {
+      nickname: 'zhangsan',
+      mobile: '18512345678',
+      email: 'zhangsan@qq.com',
+      realname: '张三',
+      sex: 1,
+      birthday: '1995-01-03',
+      regionCode: '9,73,723',
+      regionString: '上海市静安区'
+    }
+  }
+})

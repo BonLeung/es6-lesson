@@ -4,6 +4,7 @@ import { check } from '../../common/form-check'
 
 export default (opts = {}) => {
   const $form = $('register-info-form')
+
   const tipMap = {
     'nickname': '昵称',
     'email': '电子邮箱'
@@ -17,7 +18,7 @@ export default (opts = {}) => {
 
   $form.onsubmit = async (e) => {
     e.preventDefault()
-    
+
     let checkResults = check($form)
     if (checkResults.length) {
       const name = checkResults[0].name

@@ -4,12 +4,13 @@ import event from './event'
 
 const regInfo = (opts = {}) => {
   const defaultOpts = {
-
+    btnText: '下一步'
   }
   let options = Object.assign(defaultOpts, opts)
 
-  render(options)
-  event(options)
+  render(options).then(() => {
+    event(options)
+  })
 }
 
 export { regInfo }
