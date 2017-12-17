@@ -11,7 +11,7 @@ const hasClass = (dom, cls) => {
 const addClass = (dom, cls) => {
   dom.className.trim()
   if (!hasClass(dom, cls)) {
-    dom.className += ' ' + cls 
+    dom.className += ' ' + cls
   }
 }
 
@@ -22,4 +22,30 @@ const removeClass = (dom, cls) => {
   }
 }
 
-export { getId as $, addClass, removeClass }
+const isDom = (obj) => {
+  try {
+    return obj instanceof HTMLElement
+  } catch(e) {
+    return (typeof obj === 'object') && (obj.nodeType === '1') && (typeof obj.style === 'object')
+  }
+}
+
+const checkOptions = (obj) => {
+  if (Object.prototype.toString.call(obj) !== '[object Object]') {
+    return false
+  }
+
+  if (!obj.container) {
+    throw new Error('container can not be empty')
+    return false
+  }
+
+  if (!isDom(obj.container)) {
+    throw new Error('container must be a HTMLElement')
+    return false
+  }
+
+  return true
+}
+
+export { getId as $, addClass, removeClass, checkOptions }

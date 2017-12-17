@@ -15,7 +15,9 @@ export default (opts = {}) => {
     }
   })
 
-  $form.onsubmit = async () => {
+  $form.onsubmit = async (e) => {
+    e.preventDefault()
+    
     let checkResults = check($form)
     if (checkResults.length) {
       const name = checkResults[0].name

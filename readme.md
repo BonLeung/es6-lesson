@@ -31,3 +31,5 @@ npm install -g html-bundler
 ```sh
 hb dev
 ```
+
+#### 使用浏览器打开 localhost:8008/html/login.html

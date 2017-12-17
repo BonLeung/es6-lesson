@@ -71,3 +71,10 @@ FetchMock.mock('/register/info', (url, opts) => {
     message: 'success'
   }
 })
+
+FetchMock.mock('/register/payment', (url, opts) => {
+  return {
+    code: 200,
+    message: 'success'
+  }
+})
