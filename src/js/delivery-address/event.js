@@ -1,5 +1,5 @@
-import { $ } from '../common/fetch'
-import { fetchJson } from '../common/fetch'
+import { $, bindEvent} from '../common/utils'
+import { fetchPost } from '../common/fetch'
 import { check } from '../common/form-check'
 
 export default (opts) => {
@@ -48,4 +48,17 @@ export default (opts) => {
   /**
    * 删除收货地址
    */
+   bindEvent($list, 'click', '.del-delivery-address', async (e) => {
+     if (confirm('是否确认删除该收货地址？')) {
+       let data = await fetchPost('/del-delivery', {
+         addrId: e.target.getAttribute('data-id')
+       })
+       if (data.code === 200) {
+         location.reload()
+       } else {
+         alert('收货地址删除失败')
+       }
+     }
+   })
+
 }

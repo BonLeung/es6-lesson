@@ -122,3 +122,26 @@ FetchMock.mock('/delivery-address', (url, opts) => {
     }]
   }
 })
+
+FetchMock.mock('/save-delivery', {
+  code: 200,
+  message: 'success'
+})
+
+FetchMock.mock('/del-delivery', {
+  code: 200,
+  message: 'success'
+})
+
+FetchMock.mock('/security-info', {
+  code: 200,
+  message: 'success',
+  data: {
+    nickname: 'xiaoming',
+    mobile: '18512345678',
+    email: 'xiaoming@qq.com',
+    password: 1,
+    identity: 1,
+    secretQuestion: 0
+  }
+})
