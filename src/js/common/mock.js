@@ -95,3 +95,30 @@ FetchMock.mock('/profile', (url, opts) => {
     }
   }
 })
+
+
+FetchMock.mock('/delivery-address', (url, opts) => {
+  return {
+    code: 200,
+    massage: 'success',
+    data: [{
+      name: '张三',
+      regionString: '北京市东城区',
+      regionCode: '1,1,1',
+      detailAddress: '和平北街334号',
+      postalcode: '100000',
+      mobile: 18512345678,
+      telephone: '',
+      addrId: 345
+    }, {
+      name: '张三',
+      regionString: '北京市西城区',
+      regionCode: '1,1,2',
+      detailAddress: '和平北街234号',
+      postalcode: '100000',
+      mobile: 18512345679,
+      telephone: '',
+      addrId: 344
+    }]
+  }
+})
