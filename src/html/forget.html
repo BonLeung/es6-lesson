@@ -18,7 +18,10 @@
     <script type="text/javascript" src="../js/forget/init.js"></script>
     <script type="text/javascript">
         var forget = pass.forget({
-            container: document.getElementById('container')
+            container: document.getElementById('container'),
+            success: function(type, typeTool) {
+              location.replace('common-success.html?text="充值链接已发送到您的' + type + '，请收到' + typeTool + '后按提示操作"')
+            }
         })
     </script>
 </body>
